@@ -8,7 +8,8 @@
   java.lang.String
   (uri-ns-match [s uri]
     (letfn [(escdot [s] (clojure.string/replace s "." "\\."))
-            (mkpat [pat scheme] (fn [s] (->> s escdot (format pat scheme) re-pattern)))]
+            (mkpat [pat scheme]
+              (fn [s] (->> s escdot (format pat scheme) re-pattern)))]
     (let [scheme (-> uri uri/scheme escdot)
           re (condp re-matches s
                #"\."      :>> (mkpat ".*\\.%s" scheme)

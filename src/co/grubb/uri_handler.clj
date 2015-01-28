@@ -11,14 +11,17 @@
 ;
 ; Custom Search -
 ;   Given a uri and a search predicate find namespaces that match the predicate
-;     If predicate is a string, search for namespaces that match <string>.<uri scheme>
-;     If predicate is a function, search for namespaces that match (predicate uri ns) where predicate returns true if the ns should handle
-;       the uri
-;     If predicate is a map, the uri scheme is converted to a keyword and used as the key to the map, the value of the key is treated as above
+;     If predicate is a string, search for namespaces that
+;        match <string>.<uri scheme>
+;     If predicate is a function, search for namespaces that
+;       match (predicate uri ns) where predicate returns true if the
+;       ns should handle the uri
+;     If predicate is a map, the uri scheme is converted to a keyword and used
+;       as the key to the map, the value of the key is treated as above
 
 (defn- resolve-handler-fn
-  [ns scheme]
-  (let [nsmap (ns-publics ns)
+  [namesp scheme]
+  (let [nsmap (ns-publics namesp)
         handlers (filter (comp :uri-handler meta val) nsmap)
         specs (filter (comp #(= scheme %) :uri-handler meta val) handlers)]
     (if (empty? handlers)

@@ -4,10 +4,10 @@
 
 (defn- split-user-info
   [s]
-  (when-not (empty? s)
-    (into {} (mapcat #(hash-map %1 %2)
+  (when (seq s)
+    (into {} (mapcat hash-map
                      [:username :password]
-                     (str/split s #";" 2)))))
+                     (str/split s #":|;" 2)))))
 
 (defn map->URI
   [m]
