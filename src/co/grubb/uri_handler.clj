@@ -36,9 +36,13 @@
   ([uri] (find-uri-handler nil uri))
   ([p uri]
    (let [scheme (-> uri uri/scheme keyword)
-         require-ns (fn [sym] (require sym) sym)]
+         require-ns (fn [sym] (require sym) sym)
+         loaded-ns (->> (all-ns) (map ns-name) vec)]
      (when-let [handle-ns (->> (cp/classpath)
                                nsf/find-namespaces
+                               vec
+                               (apply conj loaded-ns)
+                               distinct
                                (map name)
                                (filter (urins/uri-ns-match p uri))
                                first)]
