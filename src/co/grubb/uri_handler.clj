@@ -2,7 +2,8 @@
   (:require [clojure.tools.namespace.find :as nsf]
             [clojure.java.classpath :as cp]
             [clojure.string :as str]
-            [co.grubb.uri-like :as uri])
+            [co.grubb.uri :as uri]
+            [co.grubb.uri-namespace :as urins])
   (:import [java.net URI]))
 
 ; Default Search -
@@ -36,7 +37,7 @@
      (when-let [handle-ns (->> (cp/classpath)
                                nsf/find-namespaces
                                (map name)
-                               (filter (uri/uri-ns-match p uri))
+                               (filter (urins/uri-ns-match p uri))
                                first)]
        (-> handle-ns
            symbol
