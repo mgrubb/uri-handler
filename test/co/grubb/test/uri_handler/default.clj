@@ -1,5 +1,5 @@
-(ns co.grubb.test.uri-handler.test)
+(ns co.grubb.test.uri-handler.default)
 
 (defn ^:uri-handler handler
   [uri]
-  :test)
+  :default)
