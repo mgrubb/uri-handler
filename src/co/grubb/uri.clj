@@ -30,7 +30,8 @@
   (user-info-map [uri])
   (query [uri])
   (fragment [uri])
-  (authority [uri]))
+  (authority [uri])
+  (scheme-part [uri])
 
 (extend-protocol URILike
   java.net.URI
@@ -44,6 +45,7 @@
   (query [uri] (.getQuery uri))
   (fragment [uri] (.getFragment uri))
   (authority [uri] (.getAuthority uri))
+  (scheme-part [uri] (.getSchemeSpecificPart uri))
 
   clojure.lang.IPersistentMap
   (uri [m] (map->URI m))
@@ -56,6 +58,7 @@
   (query [uri] (:query uri))
   (fragment [uri] (:fragment uri))
   (authority [uri] (:authority uri))
+  (scheme-part [uri] (:scheme-part uri))
 
   java.lang.String
   (uri [s] (URI. s))
@@ -67,4 +70,5 @@
   (user-info-map [uri] (user-info-map (URI. uri)))
   (query [uri] (query (URI. uri)))
   (fragment [uri] (fragment (URI. uri)))
-  (authority [uri] (authority (URI. uri))))
+  (authority [uri] (authority (URI. uri)))
+  (scheme-part [uri] (scheme-part (URI. uri))))
