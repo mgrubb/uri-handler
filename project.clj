@@ -7,6 +7,7 @@
                  [org.clojure/java.classpath "0.2.2"]
                  [org.clojure/tools.namespace "0.2.8"]]
   :aliases {"lint" ["do" ["bikeshed" "-m" "132"] ["kibit"] ["eastwood"]]}
-  :pom-location "target/"
+  ;; Commented out for now due to bug with technomancy/leiningen #1821
+  ; :pom-location "target/"
   :deploy-branches ["master"]
   :profiles {:dev {:dependencies [[midje "1.6.3"]]}})
