@@ -8,7 +8,7 @@
   (:import [java.net URI]))
 
 ;; ### URI Handler Resolution
-;; A URI handler is found by searching the classpath for namespaces 
+;; A URI handler is found by searching the classpath for namespaces
 ;; that match a pattern formed from the scheme part of the URI.
 ;;
 ;; The default search pattern used, when no pattern is specified is
@@ -70,8 +70,8 @@
   ([p uri]
    (let [scheme (-> uri uri/scheme keyword)
          require-ns (fn [sym] (require sym) sym)
-         loaded-ns (->> (all-ns) (map ns-name))
-         found-ns (->> (cp/classpath) nsf/find-namespaces)]
+         loaded-ns (map ns-name (all-ns))
+         found-ns (nsf/find-namespaces (cp/classpath))]
      (when-let [handle-ns (->> (mapcat vec [found-ns loaded-ns])
                                distinct
                                (map name)

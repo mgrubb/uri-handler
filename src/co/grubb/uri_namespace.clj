@@ -7,7 +7,7 @@
 ;; matches the predicate.
 
 (defprotocol URINamespaceMatcher
-  "The URINamespaceMatcher protocol defines the interface for executing the 
+  "The URINamespaceMatcher protocol defines the interface for executing the
   URI to namespace searching predicates."
   (uri-ns-match [x uri] "Takes a predicate specification and a URI and returns a function suitable for `filter`"))
 

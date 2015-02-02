@@ -1,6 +1,6 @@
 (ns co.grubb.t-uri-handler
-  (:use midje.sweet)
-  (:require [co.grubb.uri-handler :refer :all]))
+  (:require [midje.sweet :refer :all]
+            [co.grubb.uri-handler :refer :all]))
 
 (facts "about `handle-uri`"
   (fact "default search finds correct handler"

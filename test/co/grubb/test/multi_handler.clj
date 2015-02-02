@@ -9,4 +9,3 @@
   test2-handler
   [uri]
   :test2)
-

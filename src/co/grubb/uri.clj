@@ -13,9 +13,9 @@
                      [:username :password]
                      (str/split s #":|;" 2)))))
 (defn map->URI
-  "Takes a map, `m`, that contains URI fields and returns a `java.net.URI` object.
-  The map supports the keys: `:scheme`, `:user-info`, `:host`, `:port`, `:path`,
-  `:query`, and `:fragment`."
+  "Takes a map, `m`, that contains URI fields and returns a `java.net.URI`
+  object.  The map supports the keys: `:scheme`, `:user-info`, `:host`,
+  `:port`, `:path`, `:query`, and `:fragment`."
   [m]
   (URI. (:scheme m)
         (:user-info m)
