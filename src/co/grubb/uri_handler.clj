@@ -67,7 +67,6 @@
 (defn- find-uri-handler
   "Search for a namespace and function to handle the given `uri`.
   Uses co.grubb.uri-namespace/uri-ns-match to actually handle the predicate"
-  ([uri] (find-uri-handler nil uri))
   ([p uri]
    (let [scheme (-> uri uri/scheme keyword)
          require-ns (fn [sym] (require sym) sym)
@@ -90,8 +89,7 @@
    The one argument form uses the default search routine.
    The two argument form takes a predicate specification and a URI."
   ([uri]
-   (when-let [handler (find-uri-handler nil uri)]
-     (handler uri)))
+   (handle-uri nil uri))
   ([pred uri]
    (when-let [handler (find-uri-handler pred uri)]
      (handler uri))))
