@@ -4,7 +4,7 @@ A Clojure library to find uri handlers in the classpath.
 
 ## Releases and Dependency Information
 
-* Latest stable release is 0.1.0
+* Latest stable release is 0.1.1
 
 [Leiningen](http://leiningen.org/) dependency information:
 
