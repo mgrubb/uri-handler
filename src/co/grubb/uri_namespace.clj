@@ -1,8 +1,18 @@
+;; ## Predicate Execution
 (ns co.grubb.uri-namespace
   (:require [co.grubb.uri :as uri]))
 
+;; The `URINamespacematcher/uri-ns-match` function returns a function that
+;; takes a namespace, as a string, and returns a truthy value if the namespace
+;; matches the predicate.
+
 (defprotocol URINamespaceMatcher
-  (uri-ns-match [x uri]))
+  "The URINamespaceMatcher protocol defines the interface for executing the 
+  URI to namespace searching predicates."
+  (uri-ns-match [x uri] "Takes a predicate specification and a URI and returns a function suitable for `filter`"))
+
+;; Default predicate implementations are provided for string, map, and function predicates.
+;; The default search pattern is also specified by extending the protocol to nil.
 
 (extend-protocol URINamespaceMatcher
   java.lang.String
