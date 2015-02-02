@@ -4,12 +4,12 @@ A Clojure library to find uri handlers in the classpath.
 
 ## Releases and Dependency Information
 
-* Latest stable release is 0.2.0
+* Latest stable release is 0.2.1
 
 [Leiningen](http://leiningen.org/) dependency information:
 
 ```clojure
-[co.grubb/uri-handler "0.2.0"]
+[co.grubb/uri-handler "0.2.1"]
 ```
 
 [Maven](http://maven.apache.org/) dependency information:
@@ -18,7 +18,7 @@ A Clojure library to find uri handlers in the classpath.
 <dependency>
   <groupId>co.grubb</groupId>
   <artifactId>uri-handler</artifactId>
-  <version>0.2.0</version>
+  <version>0.2.1</version>
 </dependency>
 ```
 ## Overview
