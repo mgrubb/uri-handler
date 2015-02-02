@@ -38,7 +38,9 @@
   (query [uri] "Return the query portion of the URI.")
   (fragment [uri] "Return the fragment portion of the URI.")
   (authority [uri] "Returns the URI's authority part (typically host and port for heirarchichal URIs.")
-  (scheme-part [uri] "Returns the scheme specific portion (i.e. everything after the scheme) of the URI."))
+  (scheme-part [uri] "Returns the scheme specific portion (i.e. everything after the scheme) of the URI.")
+  (absolute? [uri] "Returns true if the URI is an absolute URI")
+  (opaque? [uri] "Returns true if the URI is opaque or false if it is hierarchical"))
 
 (extend-protocol URILike
   java.net.URI
@@ -53,6 +55,8 @@
   (fragment [uri] (.getFragment uri))
   (authority [uri] (.getAuthority uri))
   (scheme-part [uri] (.getSchemeSpecificPart uri))
+  (absolute? [uri] (.isAbsolute uri))
+  (opaque? [uri] (.isOpaque uri))
 
   clojure.lang.IPersistentMap
   (uri [m] (map->URI m))
@@ -66,6 +70,8 @@
   (fragment [uri] (:fragment uri))
   (authority [uri] (:authority uri))
   (scheme-part [uri] (:scheme-part uri))
+  (absolute? (absolute? (map->URI m)))
+  (opaque? (opaque? (map->URI m)))
 
   java.lang.String
   (uri [s] (URI. s))
@@ -78,4 +84,6 @@
   (query [uri] (query (URI. uri)))
   (fragment [uri] (fragment (URI. uri)))
   (authority [uri] (authority (URI. uri)))
-  (scheme-part [uri] (scheme-part (URI. uri))))
+  (scheme-part [uri] (scheme-part (URI. uri)))
+  (absolute? [uri] (absolute? (URI. uri)))
+  (opaque? [uri] (opaque? (URI. uri))))
