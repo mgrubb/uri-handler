@@ -31,7 +31,7 @@
   (query [uri])
   (fragment [uri])
   (authority [uri])
-  (scheme-part [uri])
+  (scheme-part [uri]))
 
 (extend-protocol URILike
   java.net.URI
