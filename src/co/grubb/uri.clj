@@ -70,8 +70,8 @@
   (fragment [uri] (:fragment uri))
   (authority [uri] (:authority uri))
   (scheme-part [uri] (:scheme-part uri))
-  (absolute? (absolute? (map->URI m)))
-  (opaque? (opaque? (map->URI m)))
+  (absolute? [uri] (absolute? (uri uri)))
+  (opaque? [uri] (opaque? (uri uri)))
 
   java.lang.String
   (uri [s] (URI. s))
