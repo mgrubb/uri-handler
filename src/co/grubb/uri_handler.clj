@@ -9,15 +9,22 @@
             [co.grubb.uri-namespace :as urins])
   (:import [java.net URI]))
 
-(def ^:private uri-handler-registry (atom {}))
+(def ^{:private true
+       :doc "The map of schemes to handlers"}
+  uri-handler-registry (atom {}))
 
 (defn- validate-handler
+  "Validate a handler entry found in uri_handler.edn file.
+  This makes sure that the 3 required keys, :scheme, :handler,
+  and :namespace are present."
   [h]
   (let [{:keys [scheme handler]} h
         {handle-ns :namespace} h]
     (and scheme handle-ns handler)))
 
 (defn- register-handler
+  "Reads the EDN from url and if it is a valid handler definition,
+  then add it to the regisry"
   [url]
   (let [hs (-> url slurp edn/read-string seq*)]
     (doseq [{:keys [scheme] :as h} hs]
@@ -30,6 +37,8 @@
                  (conj regs (assoc h :url url))))))))
 
 (defn- register-handlers
+  "Locate URI handler definition files on the classpath,
+  and call register-handler on them."
   []
   (swap! uri-handler-registry (constantly {}))
   (let [urls (enumeration-seq (.. Thread
@@ -39,13 +48,16 @@
     (doseq [url urls] (register-handler url))))
 
 (defn- require-handler
+  "Loads the handler namespace, and resolves the handler symbol"
   [{handler-ns :namespace handler :handler :as h}]
   (require handler-ns)
   (-> handler-ns
       find-ns
       (ns-resolve handler)))
 
-(defn- find-uri-handlers [uri]
+(defn- find-uri-handlers
+  "Looks for a handler for uri in the handler registry"
+  [uri]
   (let [scheme (keyword (uri/scheme uri))
         handlers (get @uri-handler-registry scheme)]
     (map require-handler handlers)))
@@ -56,4 +68,9 @@
   (when-let [handlers (seq (find-uri-handlers uri))]
     ((first handlers) uri)))
 
+(defn uri-handlers
+  "Returns the registry of uri handlers"
+  [] @uri-handler-registry)
+
+;; When loaded, go find the uri handlers and build the registry
 (register-handlers)
