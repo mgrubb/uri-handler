@@ -6,7 +6,10 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/java.classpath "0.2.2"]
                  [org.clojure/tools.namespace "0.2.8"]]
-  :aliases {"lint" ["do" ["bikeshed" "-m" "132"] ["kibit"] ["eastwood"]]}
+  :aliases {"lint" ["do"
+                    ["bikeshed" "-m" "132" "-v"]
+                    ["kibit"]
+                    ["eastwood" "{:namespaces [:source-paths]}"]]}
   ;; Commented out for now due to bug with technomancy/leiningen #1821
   ; :pom-location "target/"
   :deploy-branches ["master"]
