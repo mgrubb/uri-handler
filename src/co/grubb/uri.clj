@@ -70,8 +70,8 @@
   (fragment [uri] (:fragment uri))
   (authority [uri] (:authority uri))
   (scheme-part [uri] (:scheme-part uri))
-  (absolute? [uri] (absolute? (uri uri)))
-  (opaque? [uri] (opaque? (uri uri)))
+  (absolute? [u] (absolute? (uri u)))
+  (opaque? [u] (opaque? (uri u)))
 
   java.lang.String
   (uri [s] (URI. s))
@@ -87,3 +87,7 @@
   (scheme-part [uri] (scheme-part (URI. uri)))
   (absolute? [uri] (absolute? (URI. uri)))
   (opaque? [uri] (opaque? (URI. uri))))
+
+(defn schemek
+  "Returns the scheme part of a uri as a keyword"
+  [uri] (keyword (scheme uri)))
