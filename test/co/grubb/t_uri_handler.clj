@@ -2,20 +2,22 @@
   (:require [midje.sweet :refer :all]
             [co.grubb.uri-handler :refer :all]))
 
+(fact "test hash"
+  {:a [{:scheme "a" :namespace "n"}]} => (contains {:a (contains (contains {:scheme anything}))}))
+
+(fact "uri-handlers returns handler registry"
+  (uri-handlers) => (contains {:test1 (contains (contains {:scheme "test1"
+                                                           :namespace 'co.grubb.test.uri-handler.test-handler
+                                                           :handler 'handler1}))})
+  (uri-handlers) => (contains {:test2 (contains (contains {:scheme "test2"
+                                                           :namespace 'co.grubb.test.uri-handler.test-handler
+                                                           :handler 'handler2}))}))
 (facts "about `handle-uri`"
-  (fact "default search finds correct handler"
-    (handle-uri "default:example") => :default)
+  (fact "Uses the proper handler for the `test1` scheme"
+    (handle-uri "test1:example") => [:test1 "example"])
 
-  (fact "dot searches schemes at end of namespace"
-    (handle-uri "." "test:example") => :test
-    (handle-uri "." "default:example") => :default)
-
-  (fact "suffix search finds correct handler"
-    (handle-uri ".test.handlers" "test:example") => :test)
-
-  (fact "namespace literal handles all URIs"
-    (handle-uri "co.grubb.test.multi-handler" "test1:example") => :test1
-    (handle-uri "co.grubb.test.multi-handler" "test2:example") => :test2)
+  (fact "Uses the proper handler for the `test2` scheme"
+    (handle-uri "test2://example.com") => [:test2 "example.com"])
 
   (fact "unknown schemes are falsey"
     (handle-uri "test3:example") => falsey))
