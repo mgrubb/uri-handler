@@ -1,0 +1,9 @@
+[{:description "First Test Handler"
+ :scheme "test1"
+ :namespace co.grubb.test.uri-handler.test-handler
+ :handler handler1}
+
+ {:description "Second Test Handler"
+  :scheme "test2"
+  :namespace co.grubb.test.uri-handler.test-handler
+  :handler handler2}] 
