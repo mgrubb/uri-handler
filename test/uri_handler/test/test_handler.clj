@@ -1,5 +1,5 @@
-(ns co.grubb.test.uri-handler.test-handler
-  (:require [co.grubb.uri :as uri]))
+(ns uri-handler.test.test-handler
+  (:require [uri-handler.uri :as uri]))
 
 (defn handler1
   [uri]

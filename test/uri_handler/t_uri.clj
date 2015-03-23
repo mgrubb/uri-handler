@@ -1,8 +1,7 @@
-(ns co.grubb.t-uri
+(ns uri-handler.t-uri
   (:require [midje.sweet :refer :all]
-            [co.grubb.uri :as uri]
-            [clojure.string :refer (join)]
-            )
+            [uri-handler.uri :as uri]
+            [clojure.string :refer (join)])
   (:import [java.net URI]))
 
 (def scheme-part "http")
