@@ -5,8 +5,7 @@
             [clojure.string :as str]
             [clojure.edn :as edn]
             [clj-utils.seq :refer (seq*)]
-            [co.grubb.uri :as uri]
-            [co.grubb.uri-namespace :as urins])
+            [co.grubb.uri :as uri])
   (:import [java.net URI]))
 
 (def ^{:private true
