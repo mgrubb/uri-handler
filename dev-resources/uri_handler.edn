@@ -1,0 +1,9 @@
+[{:description "First Test Handler"
+ :scheme "test1"
+ :namespace uri-handler.test.test-handler
+ :handler handler1}
+
+ {:description "Second Test Handler"
+  :scheme "test2"
+  :namespace uri-handler.test.test-handler
+  :handler handler2}] 
