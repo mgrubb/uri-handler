@@ -1,16 +1,16 @@
-(ns co.grubb.t-uri-handler
+(ns uri-handler.t-core
   (:require [midje.sweet :refer :all]
-            [co.grubb.uri-handler :refer :all]))
+            [uri-handler.core :refer :all]))
 
 (fact "test hash"
   {:a [{:scheme "a" :namespace "n"}]} => (contains {:a (contains (contains {:scheme anything}))}))
 
 (fact "uri-handlers returns handler registry"
   (uri-handlers) => (contains {:test1 (contains (contains {:scheme "test1"
-                                                           :namespace 'co.grubb.test.uri-handler.test-handler
+                                                           :namespace 'uri-handler.test.test-handler
                                                            :handler 'handler1}))})
   (uri-handlers) => (contains {:test2 (contains (contains {:scheme "test2"
-                                                           :namespace 'co.grubb.test.uri-handler.test-handler
+                                                           :namespace 'uri-handler.test.test-handler
                                                            :handler 'handler2}))}))
 (facts "about `handle-uri`"
   (fact "Uses the proper handler for the `test1` scheme"

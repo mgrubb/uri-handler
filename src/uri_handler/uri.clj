@@ -1,5 +1,5 @@
 ;; ## URI manipulation and Utilities
-(ns co.grubb.uri
+(ns uri-handler.uri
   (:require [clojure.string :as str])
   (:import [java.net URI]))
 

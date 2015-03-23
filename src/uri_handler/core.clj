@@ -1,11 +1,11 @@
 ;; ## Public Interface
-(ns co.grubb.uri-handler
+(ns uri-handler.core
   (:require [clojure.tools.namespace.find :as nsf]
             [clojure.java.classpath :as cp]
             [clojure.string :as str]
             [clojure.edn :as edn]
             [clj-utils.seq :refer (seq*)]
-            [co.grubb.uri :as uri])
+            [uri-handler.uri :as uri])
   (:import [java.net URI]))
 
 (def ^{:private true
