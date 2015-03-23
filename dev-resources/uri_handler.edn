@@ -6,4 +6,10 @@
  {:description "Second Test Handler"
   :scheme "test2"
   :namespace uri-handler.test.test-handler
-  :handler handler2}] 
+  :handler handler2}
+ 
+ {:description "scoped test1"
+  :scheme "test1"
+  :scope :test
+  :namespace uri-handler.test.scope-handler
+  :handler handler1}] 

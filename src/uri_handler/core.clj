@@ -28,11 +28,12 @@
   (let [hs (-> url slurp edn/read-string seq*)]
     (doseq [{:keys [scheme] :as h} hs]
       (let [scheme (keyword scheme)
-            regs (get @uri-handler-registry scheme)]
+            scope (or (:scope h) :global)
+            regs (get-in @uri-handler-registry [scope scheme])]
         (when (validate-handler h)
           (swap! uri-handler-registry
-                 assoc
-                 scheme
+                 assoc-in
+                 [scope scheme]
                  (conj regs (assoc h :url url))))))))
 
 (defn- register-handlers
@@ -56,20 +57,23 @@
 
 (defn- find-uri-handlers
   "Looks for a handler for uri in the handler registry"
-  [uri]
+  [uri scope]
   (let [scheme (keyword (uri/scheme uri))
-        handlers (get @uri-handler-registry scheme)]
+        handlers (get-in @uri-handler-registry [scope scheme])]
     (map require-handler handlers)))
 
 (defn handle-uri
   "Search for and execute, if found, a handler function for `uri`."
-  [uri]
-  (when-let [handlers (seq (find-uri-handlers uri))]
-    ((first handlers) uri)))
+  ([uri] (handle-uri uri :global))
+  ([uri scope]
+  (when-let [handlers (seq (find-uri-handlers uri scope))]
+    ((first handlers) uri))))
 
 (defn uri-handlers
-  "Returns the registry of uri handlers"
-  [] @uri-handler-registry)
+  "Returns the registry of uri handlers, optionally limited by scope and scheme"
+  ([] @uri-handler-registry)
+  ([scope] (@uri-handler-registry scope))
+  ([scope scheme] (get-in @uri-handler-registry [scope scheme])))
 
 ;; When loaded, go find the uri handlers and build the registry
 (register-handlers)
