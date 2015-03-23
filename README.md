@@ -1,4 +1,4 @@
-# co.grubb.uri-handler
+# co.grubb/uri-handler
 
 A Clojure library to find uri handlers in the classpath.
 
@@ -30,11 +30,13 @@ in mind.  While the public API for handling a URI is one function,
 
 The underlying implementation relies on java.net.URI, however you can give the library
 a URI in the form of a string, map, or java.net.URI object.  If you don't like those
-options you can also extend the `co.grubb.URILike` protocol.
+options you can also extend the `uri-handler.uri.URILike` protocol.
 
 ## Usage
 
 ```clojure
+(ns example
+ (:require [uri-handler.core :refer (handle-uri)]))
 (handle-uri "http://example.com")
 (handle-uri "conf:///example/config")
 (handle-uri (java.net.URI. "conf:///example/config"))
