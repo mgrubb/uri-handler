@@ -1,4 +1,4 @@
-(defproject co.grubb/uri-handler "1.1.0"
+(defproject co.grubb/uri-handler "1.1.1-SNAPSHOT"
   :description "A Library which will search the classpath to load URI handlers"
   :url "http://github.com/mgrubb/uri-handler"
   :license {:name "Eclipse Public License"
