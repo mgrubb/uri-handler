@@ -28,7 +28,7 @@
   (let [hs (-> url slurp edn/read-string seq*)]
     (doseq [{:keys [scheme] :as h} hs]
       (let [scheme (keyword scheme)
-            scope (or (:scope h) :global)
+            scope (:scope h :global)
             regs (get-in @uri-handler-registry [scope scheme])]
         (when (validate-handler h)
           (swap! uri-handler-registry

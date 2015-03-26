@@ -20,7 +20,7 @@
   (URI. (:scheme m)
         (:user-info m)
         (:host m)
-        (or (:port m) -1)
+        (:port m -1)
         (:path m)
         (:query m)
         (:fragment m)))
