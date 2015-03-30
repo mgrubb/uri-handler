@@ -6,7 +6,7 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/java.classpath "0.2.2"]
                  [org.clojure/tools.namespace "0.2.8"]
-                 [co.grubb/clj-utils "0.3.1"]]
+                 [co.grubb/clj-utils "0.4.0"]]
   :plugins [[lein-set-version "LATEST"]]
   :aliases {"lint" ["do"
                     ["bikeshed" "-m" "132" "-v"]
